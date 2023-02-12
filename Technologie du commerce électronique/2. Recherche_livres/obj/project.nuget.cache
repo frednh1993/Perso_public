@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "WL6c3MCTDUew/+rBR20V2DubeyEaOutDgiYGDGzw+3sf+FDpQsICsj41nlUeyRWc8uX2qOJWX64sYyiwpQCshA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Boutin\\Videos\\Bureau\\Recherche_livres\\Recherche_livres.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Boutin\\.nuget\\packages\\buildbundlerminifier\\3.2.449\\buildbundlerminifier.3.2.449.nupkg.sha512"
+  ],
+  "logs": []
+}

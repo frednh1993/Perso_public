@@ -1,0 +1,14 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+@model List<Recherche_livres.Models.PageInfo>
+@foreach (var pageInfo in Model)
+{
+    <partial name="_Title" model="pageInfo" />
+}
+
+
+
+
+

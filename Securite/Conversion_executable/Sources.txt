@@ -1,0 +1,9 @@
+Conversion python .py en .exe : 
+https://www.geeksforgeeks.org/convert-python-script-to-exe-file/
+
+Conversion python .exe en application de bureau : 
+https://www.geeksforgeeks.org/convert-python-code-to-a-software-to-install
+-on-windows-using-inno-setup-compiler/ 
+
+Date creation Scotia Bank : https://en.wikipedia.org/wiki/Scotiabank
+
