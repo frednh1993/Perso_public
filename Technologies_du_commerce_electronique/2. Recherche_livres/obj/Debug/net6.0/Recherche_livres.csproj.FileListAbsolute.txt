@@ -29,3 +29,34 @@ C:\Users\Boutin\Videos\Bureau\Recherche_livres\bin\Debug\net6.0\bundleconfig.jso
 C:\Users\Boutin\Videos\Bureau\Recherche_livres\bin\Debug\net6.0\libman.json
 C:\Users\Boutin\Videos\Bureau\Recherche_livres\obj\Debug\net6.0\Recherche_livres.RazorAssemblyInfo.cache
 C:\Users\Boutin\Videos\Bureau\Recherche_livres\obj\Debug\net6.0\Recherche_livres.RazorAssemblyInfo.cs
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\bin\Debug\net6.0\appsettings.json
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\bin\Debug\net6.0\bundleconfig.json
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\bin\Debug\net6.0\libman.json
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\bin\Debug\net6.0\Recherche_livres.staticwebassets.runtime.json
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\bin\Debug\net6.0\Recherche_livres.exe
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\bin\Debug\net6.0\Recherche_livres.deps.json
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\bin\Debug\net6.0\Recherche_livres.runtimeconfig.json
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\bin\Debug\net6.0\Recherche_livres.dll
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\bin\Debug\net6.0\Recherche_livres.pdb
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\obj\Debug\net6.0\Recherche_livres.csproj.AssemblyReference.cache
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\obj\Debug\net6.0\Recherche_livres.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\obj\Debug\net6.0\Recherche_livres.AssemblyInfoInputs.cache
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\obj\Debug\net6.0\Recherche_livres.AssemblyInfo.cs
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\obj\Debug\net6.0\Recherche_livres.csproj.CoreCompileInputs.cache
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\obj\Debug\net6.0\Recherche_livres.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\obj\Debug\net6.0\Recherche_livres.RazorAssemblyInfo.cache
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\obj\Debug\net6.0\Recherche_livres.RazorAssemblyInfo.cs
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\obj\Debug\net6.0\staticwebassets\msbuild.Recherche_livres.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\obj\Debug\net6.0\staticwebassets\msbuild.build.Recherche_livres.props
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Recherche_livres.props
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Recherche_livres.props
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\obj\Debug\net6.0\scopedcss\bundle\Recherche_livres.styles.css
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\obj\Debug\net6.0\Recherche_livres.dll
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\obj\Debug\net6.0\refint\Recherche_livres.dll
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\obj\Debug\net6.0\Recherche_livres.pdb
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\obj\Debug\net6.0\Recherche_livres.genruntimeconfig.cache
+C:\Users\Boutin\source\repos\UQAR\Informatique-UQAR\Technologies_du_commerce_electronique\2. Recherche_livres\obj\Debug\net6.0\ref\Recherche_livres.dll

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WL6c3MCTDUew/+rBR20V2DubeyEaOutDgiYGDGzw+3sf+FDpQsICsj41nlUeyRWc8uX2qOJWX64sYyiwpQCshA==",
+  "dgSpecHash": "NrW+4ZRK5jWTxG6IdLuxzeklghWY6/1jcBRxWFeDAhwB9Z8ff6bBuzlXQy9gR29TqPwHcx7rzh7q0SK7SJTu+Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Boutin\\Videos\\Bureau\\Recherche_livres\\Recherche_livres.csproj",
+  "projectFilePath": "C:\\Users\\Boutin\\source\\repos\\UQAR\\Informatique-UQAR\\Technologies_du_commerce_electronique\\2. Recherche_livres\\Recherche_livres.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Boutin\\.nuget\\packages\\buildbundlerminifier\\3.2.449\\buildbundlerminifier.3.2.449.nupkg.sha512"
   ],

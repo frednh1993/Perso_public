@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Boutin\\Videos\\Bureau\\Recherche_livres\\Recherche_livres.csproj": {}
+    "C:\\Users\\Boutin\\source\\repos\\UQAR\\Informatique-UQAR\\Technologies_du_commerce_electronique\\2. Recherche_livres\\Recherche_livres.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Boutin\\Videos\\Bureau\\Recherche_livres\\Recherche_livres.csproj": {
+    "C:\\Users\\Boutin\\source\\repos\\UQAR\\Informatique-UQAR\\Technologies_du_commerce_electronique\\2. Recherche_livres\\Recherche_livres.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Boutin\\Videos\\Bureau\\Recherche_livres\\Recherche_livres.csproj",
+        "projectUniqueName": "C:\\Users\\Boutin\\source\\repos\\UQAR\\Informatique-UQAR\\Technologies_du_commerce_electronique\\2. Recherche_livres\\Recherche_livres.csproj",
         "projectName": "Recherche_livres",
-        "projectPath": "C:\\Users\\Boutin\\Videos\\Bureau\\Recherche_livres\\Recherche_livres.csproj",
+        "projectPath": "C:\\Users\\Boutin\\source\\repos\\UQAR\\Informatique-UQAR\\Technologies_du_commerce_electronique\\2. Recherche_livres\\Recherche_livres.csproj",
         "packagesPath": "C:\\Users\\Boutin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Boutin\\Videos\\Bureau\\Recherche_livres\\obj\\",
+        "outputPath": "C:\\Users\\Boutin\\source\\repos\\UQAR\\Informatique-UQAR\\Technologies_du_commerce_electronique\\2. Recherche_livres\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
