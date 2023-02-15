@@ -1,0 +1,12 @@
+FROM golang:latest
+WORKDIR /go/src/app
+COPY dockerfile .
+COPY docker-compose.yml .
+COPY cmd/ .
+
+RUN go get -u github.com/gorilla/mux
+RUN go get github.com/go-sql-driver/mysql
+
+RUN go build -o main .
+#RUN go run /go/src/appmain.go
+CMD ["./main"]
