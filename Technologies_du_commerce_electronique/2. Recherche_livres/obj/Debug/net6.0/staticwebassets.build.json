@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "92rtGWJwo+EVBd1m1q5hPjOrDKSctdoQrC3g4EeiQpc=",
+  "Hash": "c/5BT4NQdbdrDUS4FEZCGApXfgFn5xQdwGIbd/4eZFc=",
   "Source": "Recherche_livres",
   "BasePath": "_content/Recherche_livres",
   "Mode": "Default",
@@ -32,23 +32,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.min.css"
-    },
-    {
-      "Identity": "C:\\Users\\Boutin\\source\\repos\\UQAR\\Informatique-UQAR\\Technologies_du_commerce_electronique\\2. Recherche_livres\\wwwroot\\index.html",
-      "SourceId": "Recherche_livres",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Boutin\\source\\repos\\UQAR\\Informatique-UQAR\\Technologies_du_commerce_electronique\\2. Recherche_livres\\wwwroot\\",
-      "BasePath": "_content/Recherche_livres",
-      "RelativePath": "index.html",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\index.html"
     },
     {
       "Identity": "C:\\Users\\Boutin\\source\\repos\\UQAR\\Informatique-UQAR\\Technologies_du_commerce_electronique\\2. Recherche_livres\\wwwroot\\js\\site.min.js",

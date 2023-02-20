@@ -5,10 +5,6 @@
       "PackagePath": "staticwebassets\\css\\site.min.css"
     },
     {
-      "Id": "C:\\Users\\Boutin\\source\\repos\\UQAR\\Informatique-UQAR\\Technologies_du_commerce_electronique\\2. Recherche_livres\\wwwroot\\index.html",
-      "PackagePath": "staticwebassets\\index.html"
-    },
-    {
       "Id": "C:\\Users\\Boutin\\source\\repos\\UQAR\\Informatique-UQAR\\Technologies_du_commerce_electronique\\2. Recherche_livres\\wwwroot\\js\\site.min.js",
       "PackagePath": "staticwebassets\\js\\site.min.js"
     },
