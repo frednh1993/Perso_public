@@ -1,0 +1,27 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+@model Books.Models.Book
+
+
+
+
+<div class="card">
+
+  <div class="card-header">
+    Chercher
+  </div>
+
+  <div class="card-body">
+
+        <form asp-action="Result">
+            <input asp-for="@Model.Title" placeholder="Titre ..." /> <br>
+            <input asp-for="@Model.Author" placeholder=" Auteur ..." /> <br>
+            <input asp-for="@Model.Editor" placeholder="Éditeur ..." /> <br>
+
+            <button class="btn btn-outline-success" type="submit">Chercher</button>
+        </form>
+  </div>
+</div>
+
