@@ -12,6 +12,6 @@ namespace Books.Models
 
         public string Editor { get; set; }
 
-        public string Image { get; set; }
+        public string? Image { get; set; }
     }
 }

@@ -9,14 +9,14 @@ namespace Books.Controllers
         // Persistance de donnees temporaire
         List<Book> books = new List<Book>()
         {
-            new Book(){Title="Han d'Islande", Author="Victor Hugo", Editor="Plume de Carotte"},
-            new Book(){Title="Le dernier Jour d'un Condamné", Author="Victor Hugo", Editor="Arvensa"},
-            new Book(){Title="Le Silmarillon", Author="J.R.R. Tolkien", Editor="Bourgois"},
-            new Book(){Title="Le Seigneur des anneaux : Les Deux Tours", Author="J.R.R. Tolkien", Editor="Bourgois"},
-            new Book(){Title="Le Seigneur des anneaux : Le Retour du roi", Author="J.R.R. Tolkien", Editor="Bourgois"},
-            new Book(){Title="Le Portrait de Dorian Gray", Author="Oscar Wilde", Editor="Le livre qui parle"}
+            new Book(){Id=1, Title="Han d'Islande", Author="Victor Hugo", Editor="Plume de Carotte"},
+            new Book(){Id=2, Title="Le dernier Jour d'un Condamné", Author="Victor Hugo", Editor="Arvensa"},
+            new Book(){Id=3, Title="Le Silmarillon", Author="J.R.R. Tolkien", Editor="Bourgois"},
+            new Book(){Id = 4, Title="Le Seigneur des anneaux : Les Deux Tours", Author="J.R.R. Tolkien", Editor="Bourgois"},
+            new Book(){Id = 5, Title="Le Seigneur des anneaux : Le Retour du roi", Author="J.R.R. Tolkien", Editor="Bourgois"},
+            new Book(){Id = 6, Title="Le Portrait de Dorian Gray", Author="Oscar Wilde", Editor="Le livre qui parle"}
         };
-        
+
 
         [HttpGet]
         public IActionResult Index()
@@ -56,7 +56,8 @@ namespace Books.Controllers
                 results.Clear();
             }
             
-            return View(results);
+            //return View(results);
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
