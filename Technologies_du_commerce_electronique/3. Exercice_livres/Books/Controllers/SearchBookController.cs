@@ -56,14 +56,34 @@ namespace Books.Controllers
                 results.Clear();
             }
             
-            //return View(results);
-            return RedirectToAction("Index");
+            return View(results);
         }
 
+        // Acces a la page de resultats sans recherche prealable.
         [HttpGet]
-        public IActionResult Result(List<Book> liste)
+        public IActionResult Result()
         {
-            return View(liste);
+            List<Book> empty_books = new List<Book>();
+
+            return View(empty_books);
+        }
+
+        public void AddBookToList(int userId, Book book)
+        {
+            BooksContext context = new BooksContext();
+            User user = context.Users.Where(u => u.Id == userId).First();
+
+            user.Books.Add(book);
+            context.SaveChanges();
+        }
+
+        public void RemoveBookToList(int userId, string bookName) 
+        { 
+            BooksContext context = new BooksContext();
+            User user = context.Users.Where(u => u.Id == userId).First();
+
+
+
         }
 
     }

@@ -8,6 +8,7 @@ namespace Books
 {
     public class BooksContext : DbContext
     {
+        public DbSet<Models.User> Users { get; set; }
         public DbSet<Models.Book> Books { get; set; }
 
 
@@ -18,13 +19,17 @@ namespace Books
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Models.User>().HasData(
+                new Models.User() { Id = 1, Name="Frederik Boutin" }
+                );
+
             modelBuilder.Entity<Models.Book>().HasData(
-                new Models.Book() {Id=1, Title = "Han d'Islande", Author = "Victor Hugo", Editor = "Plume de Carotte" },
-                new Models.Book() {Id = 2, Title = "Le dernier Jour d'un Condamné", Author = "Victor Hugo", Editor = "Arvensa" },
-                new Models.Book() {Id = 3, Title = "Le Silmarillon", Author = "J.R.R. Tolkien", Editor = "Bourgois" },
-                new Models.Book() {Id = 4, Title = "Le Seigneur des anneaux : Les Deux Tours", Author = "J.R.R. Tolkien", Editor = "Bourgois" },
-                new Models.Book() {Id = 5, Title = "Le Seigneur des anneaux : Le Retour du roi", Author = "J.R.R. Tolkien", Editor = "Bourgois" },
-                new Models.Book() {Id = 6, Title = "Le Portrait de Dorian Gray", Author = "Oscar Wilde", Editor = "Le livre qui parle" }
+                new Models.Book() {Id=1, Title = "Han d'Islande", Author = "Victor Hugo", Editor = "Plume de Carotte", UserId=1},
+                new Models.Book() {Id = 2, Title = "Le dernier Jour d'un Condamné", Author = "Victor Hugo", Editor = "Arvensa", UserId = 1 },
+                new Models.Book() {Id = 3, Title = "Le Silmarillon", Author = "J.R.R. Tolkien", Editor = "Bourgois", UserId = 1 },
+                new Models.Book() {Id = 4, Title = "Le Seigneur des anneaux : Les Deux Tours", Author = "J.R.R. Tolkien", Editor = "Bourgois", UserId = 1 },
+                new Models.Book() {Id = 5, Title = "Le Seigneur des anneaux : Le Retour du roi", Author = "J.R.R. Tolkien", Editor = "Bourgois", UserId = 1 },
+                new Models.Book() {Id = 6, Title = "Le Portrait de Dorian Gray", Author = "Oscar Wilde", Editor = "Le livre qui parle", UserId = 1 }
                 );
         }
     }

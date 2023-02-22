@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Books.Migrations
 {
     [DbContext(typeof(BooksContext))]
-    [Migration("20230221015955_Creation_base_donnees")]
-    partial class Creation_base_donnees
+    [Migration("20230221230420_Creation")]
+    partial class Creation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,7 +46,12 @@ namespace Books.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Books");
 
@@ -56,43 +61,89 @@ namespace Books.Migrations
                             Id = 1,
                             Author = "Victor Hugo",
                             Editor = "Plume de Carotte",
-                            Title = "Han d'Islande"
+                            Title = "Han d'Islande",
+                            UserId = 1
                         },
                         new
                         {
                             Id = 2,
                             Author = "Victor Hugo",
                             Editor = "Arvensa",
-                            Title = "Le dernier Jour d'un Condamné"
+                            Title = "Le dernier Jour d'un Condamné",
+                            UserId = 1
                         },
                         new
                         {
                             Id = 3,
                             Author = "J.R.R. Tolkien",
                             Editor = "Bourgois",
-                            Title = "Le Silmarillon"
+                            Title = "Le Silmarillon",
+                            UserId = 1
                         },
                         new
                         {
                             Id = 4,
                             Author = "J.R.R. Tolkien",
                             Editor = "Bourgois",
-                            Title = "Le Seigneur des anneaux : Les Deux Tours"
+                            Title = "Le Seigneur des anneaux : Les Deux Tours",
+                            UserId = 1
                         },
                         new
                         {
                             Id = 5,
                             Author = "J.R.R. Tolkien",
                             Editor = "Bourgois",
-                            Title = "Le Seigneur des anneaux : Le Retour du roi"
+                            Title = "Le Seigneur des anneaux : Le Retour du roi",
+                            UserId = 1
                         },
                         new
                         {
                             Id = 6,
                             Author = "Oscar Wilde",
                             Editor = "Le livre qui parle",
-                            Title = "Le Portrait de Dorian Gray"
+                            Title = "Le Portrait de Dorian Gray",
+                            UserId = 1
                         });
+                });
+
+            modelBuilder.Entity("Books.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Frederik Boutin"
+                        });
+                });
+
+            modelBuilder.Entity("Books.Models.Book", b =>
+                {
+                    b.HasOne("Books.Models.User", "User")
+                        .WithMany("Books")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Books.Models.User", b =>
+                {
+                    b.Navigation("Books");
                 });
 #pragma warning restore 612, 618
         }
