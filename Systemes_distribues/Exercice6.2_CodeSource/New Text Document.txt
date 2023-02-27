@@ -1,0 +1,10 @@
+Liste de quelques commandes utiliser dans le cours (vérifier sur le Net pour savoir ce qu’elles font !)
+
+    minikube addons enable metrics-server
+    minikube dashboard
+    kubectl deployment list
+    kubectl get deployments
+    minikube service list
+    kubectl apply -f .
+    kubectl get pods
+    minikube service webservice
