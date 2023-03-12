@@ -1,18 +1,18 @@
 # Reprend l'image de Go, WORKDIR du container, COPY dependances Go dans container
-FROM golang:latest  
-#COPY /cmd/go.mod /go/src/app/
-WORKDIR /go/src/app
+FROM golang:latest 
+WORKDIR /go/src/app 
+COPY /cmd/go.mod /go/src/app/
 
 #COPY dockerfile .
 #COPY docker-compose.yml .
-COPY cmd/ .
+COPY /cmd/ .
 
 # Dependances supplementares pour HTTP et MySQL
 RUN go get -u github.com/gorilla/mux
 RUN go get github.com/go-sql-driver/mysql
 
 # CMD ["/bin/bash"]
-# RUN go run /go/src/appmain.go
+#RUN go run /go/src/app/main.go
 CMD go run /go/src/app/main.go
 
 
