@@ -1,32 +1,53 @@
+# SERVICE part
 apiVersion: v1
 kind: Service
 metadata:
   name: webservice
+  # Give link to Service
   labels:
     app: webservice
 spec:
   ports:
-    - port: 80
+    - port: 8080
   selector:
+    # LINK Service-deployment and Service-pod
     app: webservice
   type: NodePort
 ---
+# DEPLOYMENT part
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: webservice-deployment
 spec:
+  # replicas: 1
   selector:
+    # LINK Deployment-Pod
     matchLabels:
       app: webservice
+
+  # POD part
   template:
     metadata:
+      # Give link to Pod
       labels:
         app: webservice
     spec:
       containers:
-      - name: webservice
-        image: docker.io/library/bdandgo-rest_api
-        imagePullPolicy: Never
-        ports:
-        - containerPort: 80
+        - name: webservice
+          image: docker.io/library/site-web-uqar:latest
+          imagePullPolicy: Never
+          env:
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-db-secret
+                  key: password
+            - name: DB_USER
+              value: root
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: "1"
+              memory: "512Mi"
