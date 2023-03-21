@@ -35,18 +35,21 @@ spec:
     spec:
       containers:
         - name: webservice
-          image: docker.io/library/site-web-uqar:latest
+          image: docker.io/frednh1993/uqar_systemes_distribues:webservice
           imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
           env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-db-secret
+                  key: User
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: mysql-db-secret
                   key: password
-            - name: DB_USER
-              value: root
-          ports:
-            - containerPort: 8080
           resources:
             limits:
               cpu: "1"
