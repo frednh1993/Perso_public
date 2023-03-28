@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "l9S40hR5qaNeDOQj0j9MklTSEBAuV1L849+sBv3Lba0=",
+  "Source": "ApiStripe",
+  "BasePath": "_content/ApiStripe",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
