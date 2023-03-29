@@ -1,0 +1,26 @@
+﻿@model DemoAspNet.Models.Product
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<div class="card">
+  <div class="card-body">
+
+
+        <h5 class="card-title">@Model.Title</h5>
+        <span class="badge bg-primary mb-2">
+            <b>@Model.User.UserName</b>
+        </span>
+        <h6 class="card-subtitle mb-2 text-muted">@Model.Country</h6>
+        <p>@Model.Description</p>
+
+        <form action="/create-checkout-session" method="POST">
+            <button type="submit">Checkout T-shirt</button>
+        </form>
+
+        <div>
+            <button type="button" onclick="StripeCheckout('@Model.StripeId');" >Checkout</button>
+        </div>
+
+    @*<a class="btn btn-danger" href="~/home/removeproduct/@Model.ProductId" role="button">Supprimer</a>*@
+  </div>
+</div>

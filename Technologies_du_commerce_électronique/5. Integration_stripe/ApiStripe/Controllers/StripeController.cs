@@ -15,12 +15,14 @@ namespace ApiStripe.Controllers
         private readonly IStripeAppService _stripeService;
 
 
+        // Constructor.
         public StripeController(IStripeAppService stripeService)
         {
             _stripeService = stripeService;
         }
 
 
+        // Add Customer.
         [HttpPost("customer/add")]
         public async Task<ActionResult<StripeCustomer>> AddStripeCustomer(
             [FromBody] AddStripeCustomer customer,
@@ -34,6 +36,19 @@ namespace ApiStripe.Controllers
         }
 
 
+        // Update Customer.
+        [HttpPatch("customer/update")]
+        public async Task<ActionResult<StripeUpdatedCustomer>> UpdateStripeCustomer(
+            [FromBody] UpdateStripeCustomer customer,
+            CancellationToken ct)
+        {
+            StripeUpdatedCustomer updatedCustomer = await _stripeService.UpdateStripeCustomerAsync(customer, ct);
+                
+            return StatusCode(StatusCodes.Status200OK, updatedCustomer);
+        }
+
+
+        // Add Product.
         [HttpPost("payment/add")]
         public async Task<ActionResult<StripePayment>> AddStripePayment(
             [FromBody] AddStripePayment payment,

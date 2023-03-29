@@ -4,7 +4,7 @@ using ApiStripe.Contracts;
 using ApiStripe.Models.Stripe;
 
 
-namespace ApiStripe.Application 
+namespace ApiStripe.Application
 {
     public class StripeAppService : IStripeAppService
     {
@@ -66,8 +66,8 @@ namespace ApiStripe.Application
 
 
         }
-        
-        
+
+
         /// <summary>
         /// Add a new payment at Stripe using Customer and Payment details.
         /// Customer has to exist at Stripe already.
@@ -98,6 +98,36 @@ namespace ApiStripe.Application
               createdPayment.Currency,
               createdPayment.Amount,
               createdPayment.Id);
+        }
+
+
+        public async Task<StripeUpdatedCustomer> UpdateStripeCustomerAsync(UpdateStripeCustomer customer, CancellationToken ct)
+        {
+            TokenCreateOptions tokenOptions = new TokenCreateOptions
+            {
+                Card = new TokenCardOptions
+                {
+                    Name = customer.Name,
+                    Number = customer.CreditCard.CardNumber,
+                    ExpYear = customer.CreditCard.ExpirationYear,
+                    ExpMonth = customer.CreditCard.ExpirationMonth,
+                    Cvc = customer.CreditCard.Cvc
+                }
+            };
+            // Create new Stripe Token
+            Token stripeToken = await _tokenService.CreateAsync(tokenOptions, null, ct);
+
+
+            var options = new CustomerUpdateOptions
+            {
+                Name = customer.Name,
+                Email = customer.Email,
+                Source = stripeToken.Id
+            };
+            var service = new CustomerService();
+            service.Update(customer.CustomerId, options);
+
+            return new StripeUpdatedCustomer(customer.Name, customer.Email, customer.CustomerId, customer.CreditCard.Name, customer.CreditCard.CardNumber, customer.CreditCard.ExpirationYear, customer.CreditCard.ExpirationMonth, customer.CreditCard.Cvc);
         }
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Boutin\\Videos\\Bureau\\ApiStripe\\ApiStripe.csproj": {}
+    "C:\\Users\\Boutin\\source\\repos\\Now\\ApiStripe\\ApiStripe.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Boutin\\Videos\\Bureau\\ApiStripe\\ApiStripe.csproj": {
+    "C:\\Users\\Boutin\\source\\repos\\Now\\ApiStripe\\ApiStripe.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Boutin\\Videos\\Bureau\\ApiStripe\\ApiStripe.csproj",
+        "projectUniqueName": "C:\\Users\\Boutin\\source\\repos\\Now\\ApiStripe\\ApiStripe.csproj",
         "projectName": "ApiStripe",
-        "projectPath": "C:\\Users\\Boutin\\Videos\\Bureau\\ApiStripe\\ApiStripe.csproj",
+        "projectPath": "C:\\Users\\Boutin\\source\\repos\\Now\\ApiStripe\\ApiStripe.csproj",
         "packagesPath": "C:\\Users\\Boutin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Boutin\\Videos\\Bureau\\ApiStripe\\obj\\",
+        "outputPath": "C:\\Users\\Boutin\\source\\repos\\Now\\ApiStripe\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
