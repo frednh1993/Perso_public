@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Boutin\\source\\repos\\Now\\ApiStripe\\ApiStripe.csproj": {}
+    "C:\\Users\\Boutin\\source\\repos\\UQAR\\Uqar-exercices\\Technologies_du_commerce_électronique\\5. Integration_stripe\\ApiStripe\\ApiStripe.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Boutin\\source\\repos\\Now\\ApiStripe\\ApiStripe.csproj": {
+    "C:\\Users\\Boutin\\source\\repos\\UQAR\\Uqar-exercices\\Technologies_du_commerce_électronique\\5. Integration_stripe\\ApiStripe\\ApiStripe.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Boutin\\source\\repos\\Now\\ApiStripe\\ApiStripe.csproj",
+        "projectUniqueName": "C:\\Users\\Boutin\\source\\repos\\UQAR\\Uqar-exercices\\Technologies_du_commerce_électronique\\5. Integration_stripe\\ApiStripe\\ApiStripe.csproj",
         "projectName": "ApiStripe",
-        "projectPath": "C:\\Users\\Boutin\\source\\repos\\Now\\ApiStripe\\ApiStripe.csproj",
+        "projectPath": "C:\\Users\\Boutin\\source\\repos\\UQAR\\Uqar-exercices\\Technologies_du_commerce_électronique\\5. Integration_stripe\\ApiStripe\\ApiStripe.csproj",
         "packagesPath": "C:\\Users\\Boutin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Boutin\\source\\repos\\Now\\ApiStripe\\obj\\",
+        "outputPath": "C:\\Users\\Boutin\\source\\repos\\UQAR\\Uqar-exercices\\Technologies_du_commerce_électronique\\5. Integration_stripe\\ApiStripe\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

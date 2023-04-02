@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5E125AkVPeZ1rJGSOVTLuwT1oy9U1Lru782nvEeEywWmoXysBm4bk8QAROave1aIOuGxJRFDLzQoRcBrvKLwsA==",
+  "dgSpecHash": "udJHG0hrqVJwsHstpV+ft5dYBIMt/Y+uhkN26BT8lbBNmul+sRD8G+5JTaN3mr0jdcUw28YfU9JNIKu0wmAkXQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Boutin\\source\\repos\\Now\\ApiStripe\\ApiStripe.csproj",
+  "projectFilePath": "C:\\Users\\Boutin\\source\\repos\\UQAR\\Uqar-exercices\\Technologies_du_commerce_électronique\\5. Integration_stripe\\ApiStripe\\ApiStripe.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Boutin\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\Boutin\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
