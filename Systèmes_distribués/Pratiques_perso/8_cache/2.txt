@@ -1,0 +1,694 @@
+Stéphane 9:25 AM
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka
+  labels:
+    app: kafka
+spec:
+  ports:
+  - port: 9092
+    name: plaintext
+  - port: 9999
+    name: jmx
+  clusterIP: None
+  selector:
+    app: kafka
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: kafka
+spec:
+  selector:
+    matchLabels:
+      app: kafka
+  serviceName: "kafka"
+  replicas: 3
+  podManagementPolicy: OrderedReady
+  template:
+    metadata:
+      labels:
+        app: kafka # has to match .spec.selector.matchLabels
+    spec:
+      containers:
+      - name: kafka
+        image: wurstmeister/kafka:2.13-2.8.1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9092
+          name: plaintext
+        - containerPort: 9999
+          name: jmx
+        env:
+          - name: KAFKA_ADVERTISED_PORT
+            value: "9092"
+          - name: BROKER_ID_COMMAND
+            value: "hostname | cut -d'-' -f2"
+          - name: KAFKA_ZOOKEEPER_CONNECT
+            value: "zookeeper-service:2181"
+          - name: KAFKA_LISTENERS
+            value: "PLAINTEXT://:9092"
+          - name: KAFKA_JMX_OPTS
+            value: "-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.rmi.port=9999 -Djava.rmi.server.hostname=127.0.0.1"
+          - name: JMX_PORT
+            value: "9999"
+Stéphane  to  Everyone 9:29 AM
+env:
+          - name: KAFKA_ADVERTISED_PORT
+            value: "9092"
+          - name: BROKER_ID_COMMAND
+            value: "hostname | cut -d'-' -f2"
+          - name: KAFKA_ZOOKEEPER_CONNECT
+            value: "zookeeper-service:2181"
+          - name: KAFKA_LISTENERS
+            value: "PLAINTEXT://:9092"
+          - name: KAFKA_JMX_OPTS
+            value: "-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.rmi.port=9999 -Djava.rmi.server.hostname=127.0.0.1"
+          - name: JMX_PORT
+            value: "9999"
+Stéphane  to  Everyone 9:32 AM
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: zookeeper-service
+  name: zookeeper-service
+spec:
+  type: NodePort
+  ports:
+  - name: zookeeper-port
+    port: 2181
+    targetPort: 2181
+  selector:
+    app: zookeeper
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: zookeeper
+  name: zookeeper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zookeeper
+  template:
+    metadata:
+      labels:
+        app: zookeeper
+    spec:
+      containers:
+      - image: library/zookeeper:3.8.1
+        imagePullPolicy: IfNotPresent
+        name: zookeeper
+        ports:
+        - containerPort: 2181
+        env:
+        - name: ZOO_MY_ID
+          value: "1"
+Stéphane  to  Everyone 9:37 AM
+kind: Service
+apiVersion: v1
+metadata:
+  name: kafka-manager
+spec:
+  type: NodePort
+  selector:
+    app: kafka-manager
+  ports:
+  - port: 9000
+    protocol: TCP
+    targetPort: 9000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-manager
+  template:
+    metadata:
+      labels:
+        app: kafka-manager
+    spec:
+      containers:
+      - name: kafka-manager
+        image: sheepkiller/kafka-manager@sha256:615f3b99d38aba2d5fdb3fb750a5990ba9260c8fb3fd29c7e776e8c150518b78
+        ports:
+        - containerPort: 9000
+        env:
+        - name: ZK_HOSTS
+          value: "zookeeper-service:2181"
+Stéphane  to  Everyone 9:39 AM
+minikube service kafka-manager
+Stéphane  to  Everyone 9:41 AM
+zookeeper-service:2181
+Stéphane  to  Everyone 9:48 AM
+kubectl run -ti --image=gcr.io/google_containers/kubernetes-kafka:1.0-10.2.1 consume --restart=Never --rm -- kafka-console-consumer.sh --topic uqar --bootstrap-server kafka:9092
+Stéphane  to  Everyone 9:49 AM
+kubectl run -ti --image=gcr.io/google_containers/kubernetes-kafka:1.0-10.2.1 produce --restart=Never --rm -- kafka-console-producer.sh --topic uqar --broker-list kafka-0.kafka.default.svc.cluster.local:9092,kafka-1.kafka.default.svc.cluster.local:9092,kafka-2.kafka.default.svc.cluster.local:9092 done;
+Stéphane  to  Everyone 10:23 AM
+package main
+
+import (
+	"context"
+	"database/sql"
+	"fmt"
+	"log"
+	"os"
+
+	"github.com/Shopify/sarama"
+	_ "github.com/go-sql-driver/mysql"
+)
+
+type etudiant struct {
+	ID  int    `json:"Id"`
+	Nom string `json:"Nom"`
+}
+
+var databaseUser string
+var databasePassword string
+
+func main() {
+	fmt.Println("Starting kafka consumer")
+
+	client := newKafkaClient()
+	defer client.Close()
+
+	databaseUser = os.Getenv("DB_USER")
+	databasePassword = os.Getenv("DB_PASSWORD")
+
+	for {
+		// `Consume` should be called inside an infinite loop, when a
+		// server-side rebalance happens, the consumer session will need to be
+		// recreated to get the new claims
+		if err := client.Consume(context.Background(), []string{"uqar"}, &Consumer{}); err != nil {
+			log.Panicf("Error from consumer: %v", err)
+		}
+	}
+}
+
+func newKafkaClient() sarama.ConsumerGroup {
+	brokerList := []string{"kafka-0.kafka.default.svc.cluster.local:9092", "kafka-1.kafka.default.svc.cluster.local:9092", "kafka-2.kafka.default.svc.cluster.local:9092"}
+	config := sarama.NewConfig()
+
+	consumer, err := sarama.NewConsumerGroup(brokerList, "uqar.etudiant.consumer", config)
+	if err != nil {
+		log.Panicf("Error creating consumer group client: %v", err)
+	}
+
+	return consumer
+}
+
+type Consumer struct {
+}
+
+// Setup is run at the beginning of a new session, before ConsumeClaim
+func (consumer *Consumer) Setup(sarama.ConsumerGroupSession) error {
+	return nil
+}
+
+// Cleanup is run at the end of a session, once all ConsumeClaim goroutines have exited
+func (consumer *Consumer) Cleanup(sarama.ConsumerGroupSession) error {
+	return nil
+}
+
+// ConsumeClaim must start a consumer loop of ConsumerGroupClaim's Messages().
+func (consumer *Consumer) ConsumeClaim(session sarama.ConsumerGroupSession, claim sarama.ConsumerGroupClaim) error {
+	for message := range claim.Messages() {
+		log.Printf("Message claimed: value = %s, timestamp = %v, topic = %s", string(message.Value), message.Timestamp, message.Topic)
+		addEtudiant(string(message.Value))
+		session.MarkMessage(message, "")
+	}
+
+	return nil
+}
+
+func addEtudiant(name string) {
+	db, err := sql.Open("mysql", databaseUser+":"+databasePassword+"@tcp(mysql:3306)/uqar")
+	defer db.Close()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	sqlStatement := "INSERT INTO etudiants (id, nom) VALUES (NULL, '" + name + "')"
+	_, err = db.Exec(sqlStatement)
+	if err != nil {
+		panic(err)
+	}
+}
+func newKafkaClient() sarama.ConsumerGroup {
+	brokerList := []string{"kafka-0.kafka.default.svc.cluster.local:9092", "kafka-1.kafka.default.svc.cluster.local:9092", "kafka-2.kafka.default.svc.cluster.local:9092"}
+	config := sarama.NewConfig()
+
+	consumer, err := sarama.NewConsumerGroup(brokerList, "uqar.etudiant.consumer", config)
+	if err != nil {
+		log.Panicf("Error creating consumer group client: %v", err)
+	}
+
+	return consumer
+}
+type Consumer struct {
+}
+
+// Setup is run at the beginning of a new session, before ConsumeClaim
+func (consumer *Consumer) Setup(sarama.ConsumerGroupSession) error {
+	return nil
+}
+
+// Cleanup is run at the end of a session, once all ConsumeClaim goroutines have exited
+func (consumer *Consumer) Cleanup(sarama.ConsumerGroupSession) error {
+	return nil
+}
+
+// ConsumeClaim must start a consumer loop of ConsumerGroupClaim's Messages().
+func (consumer *Consumer) ConsumeClaim(session sarama.ConsumerGroupSession, claim sarama.ConsumerGroupClaim) error {
+	for message := range claim.Messages() {
+		log.Printf("Message claimed: value = %s, timestamp = %v, topic = %s", string(message.Value), message.Timestamp, message.Topic)
+		addEtudiant(string(message.Value))
+		session.MarkMessage(message, "")
+	}
+
+	return nil
+}
+func addEtudiant(name string) {
+	db, err := sql.Open("mysql", databaseUser+":"+databasePassword+"@tcp(mysql:3306)/uqar")
+	defer db.Close()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	sqlStatement := "INSERT INTO etudiants (id, nom) VALUES (NULL, '" + name + "')"
+	_, err = db.Exec(sqlStatement)
+	if err != nil {
+		panic(err)
+	}
+}
+Stéphane  to  Everyone 10:36 AM
+FROM golang:1.20
+
+WORKDIR /go/src/app
+
+COPY go.* ./
+
+# Install required package
+RUN go get -u github.com/go-sql-driver/mysql
+RUN go get github.com/Shopify/sarama
+
+COPY cmd cmd
+
+RUN go build cmd/main.go
+
+CMD ["./main"]
+Stéphane  to  Everyone 10:38 AM
+module uquar/webservice
+
+go 1.19
+
+require (
+	github.com/go-sql-driver/mysql v1.7.0
+	github.com/gorilla/mux v1.8.0
+)
+Stéphane  to  Everyone 10:40 AM
+docker build -t cours7-api .
+Stéphane  to  Everyone 10:43 AM
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-consumer-deployment
+spec:
+  selector:
+    matchLabels:
+      app: kafka-consumer
+  template:
+    metadata:
+      labels:
+        app: kafka-consumer
+    spec:
+      containers:
+      - name: kafka-consumer
+        image: cours7-kafka-consumer:latest
+        imagePullPolicy: Never
+        env:
+        - name: DB_PASSWORD
+          valueFrom: 
+            secretKeyRef: 
+              name: mysql-db-secret 
+              key: password
+        - name : DB_USER
+          value: root
+kubectl create secret generic mysql-db-secret --from-literal=password='test123'
+Stéphane  to  Everyone 10:49 AM
+{"Nom" : "Francois"}
+Stéphane  to  Everyone 10:50 AM
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: mysql
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+  labels:
+    app: mysql
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-initdb-config
+data:
+  initdb.sql: |
+    CREATE TABLE etudiants (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, nom VARCHAR(20));
+    INSERT INTO `etudiants` (`id`,`nom`) VALUES (NULL, "Stephane Brillant");
+    INSERT INTO `etudiants` (`id`,`nom`) VALUES (NULL, "John Doe");
+    INSERT INTO `etudiants` (`id`,`nom`) VALUES (NULL, "Leeroy Jenkins");
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.7
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom: 
+            secretKeyRef: 
+              name: mysql-db-secret 
+              key: password
+        - name : MYSQL_DATABASE
+          value: uqar
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+        - name: mysql-initdb
+          mountPath: /docker-entrypoint-initdb.d
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
+      - name: mysql-initdb
+        configMap:
+          name: mysql-initdb-config
+env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom: 
+            secretKeyRef: 
+              name: mysql-db-secret 
+              key: password
+        - name : MYSQL_DATABASE
+          value: uqar
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+        - name: mysql-initdb
+          mountPath: /docker-entrypoint-initdb.d
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
+      - name: mysql-initdb
+        configMap:
+          name: mysql-initdb-config
+Gabriel Létourneau  to  Everyone 11:01 AM
+https://portail.uqar.ca/mod/forum/discuss.php?d=251583
+Stéphane  to  Everyone 11:01 AM
+kubectl run -ti --image=gcr.io/google_containers/kubernetes-kafka:1.0-10.2.1 produce --restart=Never --rm -- kafka-console-producer.sh --topic uqar --broker-list kafka-0.kafka.default.svc.cluster.local:9092,kafka-1.kafka.default.svc.cluster.local:9092,kafka-2.kafka.default.svc.cluster.local:9092 done;
+Stéphane  to  Everyone 11:08 AM
+package main
+
+import (
+	"database/sql"
+	"encoding/json"
+	"fmt"
+	"log"
+	"net/http"
+	"os"
+
+	"github.com/Shopify/sarama"
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/gorilla/mux"
+)
+
+type etudiant struct {
+	ID  int    `json:"Id"`
+	Nom string `json:"Nom"`
+}
+
+var databaseUser string
+var databasePassword string
+
+var etudiantProducer sarama.SyncProducer
+
+func main() {
+	fmt.Println("Starting Web Service")
+
+	etudiantProducer = newKafkaProducer()
+	defer etudiantProducer.Close()
+
+	databaseUser = os.Getenv("DB_USER")
+	databasePassword = os.Getenv("DB_PASSWORD")
+
+	router := mux.NewRouter().StrictSlash(true)
+
+	router.HandleFunc("/health", healthHandler)
+	router.HandleFunc("/etudiants", etudiantsGetHandler).Methods("GET")
+	router.HandleFunc("/etudiants", etudiantsPostHandler).Methods("POST")
+
+	http.ListenAndServe(":8080", router)
+}
+
+func healthHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("healthHandler called")
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+}
+
+func etudiantsGetHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("etudiantsGetHandler called")
+	db, err := sql.Open("mysql", databaseUser+":"+databasePassword+"@tcp(mysql:3306)/uqar")
+	defer db.Close()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	res, err := db.Query("SELECT * FROM etudiants")
+	defer res.Close()
+
+	var etudiantList []etudiant
+	for res.Next() {
+
+		var currentEtudiant etudiant
+		err := res.Scan(&currentEtudiant.ID, &currentEtudiant.Nom)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		etudiantList = append(etudiantList, currentEtudiant)
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(etudiantList)
+}
+
+func etudiantsPostHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("etudiantsPostHandler called")
+	w.Header().Set("Content-Type", "application/json")
+
+	var etudiant etudiant
+
+	decoder := json.NewDecoder(r.Body)
+	if err := decoder.Decode(&etudiant); err != nil {
+		fmt.Println("etudiantsPostHandler error: ", err.Error())
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	defer r.Body.Close()
+
+	partition, offset, err := etudiantProducer.SendMessage(&sarama.ProducerMessage{
+		Topic: "uqar",
+		Value: sarama.StringEncoder(etudiant.Nom),
+	})
+
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		fmt.Fprintf(w, "Failed to store your data:, %s", err)
+	} else {
+		fmt.Fprintf(w, "Etudiant : /%s added to partition : /%d with offset : /%d", etudiant.Nom, partition, offset)
+	}
+}
+
+func newKafkaProducer() sarama.SyncProducer {
+	brokerList := []string{"kafka-0.kafka.default.svc.cluster.local:9092", "kafka-1.kafka.default.svc.cluster.local:9092", "kafka-2.kafka.default.svc.cluster.local:9092"}
+	config := sarama.NewConfig()
+	config.Producer.Return.Successes = true
+
+	producer, err := sarama.NewSyncProducer(brokerList, config)
+	if err != nil {
+		log.Fatalln("Failed to start Sarama producer:", err)
+	}
+
+	return producer
+}
+Stéphane 11:15 AM
+module webservice
+
+go 1.19
+
+require (
+	github.com/Shopify/sarama v1.38.1
+	github.com/go-sql-driver/mysql v1.7.0
+	github.com/gorilla/mux v1.8.0
+)
+
+require (
+	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/eapache/go-resiliency v1.3.0 // indirect
+	github.com/eapache/go-xerial-snappy v0.0.0-20230111030713-bf00bc1b83b6 // indirect
+	github.com/eapache/queue v1.1.0 // indirect
+	github.com/golang/snappy v0.0.4 // indirect
+	github.com/hashicorp/errwrap v1.0.0 // indirect
+	github.com/hashicorp/go-multierror v1.1.1 // indirect
+	github.com/hashicorp/go-uuid v1.0.3 // indirect
+	github.com/jcmturner/aescts/v2 v2.0.0 // indirect
+	github.com/jcmturner/dnsutils/v2 v2.0.0 // indirect
+	github.com/jcmturner/gofork v1.7.6 // indirect
+	github.com/jcmturner/gokrb5/v8 v8.4.3 // indirect
+	github.com/jcmturner/rpc/v2 v2.0.3 // indirect
+	github.com/klauspost/compress v1.15.14 // indirect
+	github.com/pierrec/lz4/v4 v4.1.17 // indirect
+	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475 // indirect
+	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa // indirect
+	golang.org/x/net v0.5.0 // indirect
+)
+apiVersion: v1
+kind: Service
+metadata:
+  name: webservice
+  labels:
+    app: webservice
+spec:
+  ports:
+    - port: 8080
+  selector:
+    app: webservice
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webservice-deployment
+spec:
+  selector:
+    matchLabels:
+      app: webservice
+  template:
+    metadata:
+      labels:
+        app: webservice
+    spec:
+      containers:
+      - name: webservice
+        image: cours7-api:latest
+        imagePullPolicy: Never
+        env:
+        - name: DB_PASSWORD
+          valueFrom: 
+            secretKeyRef: 
+              name: mysql-db-secret 
+              key: password
+        - name : DB_USER
+          value: root
+        ports:
+        - containerPort: 8080
+Docker files
+FROM golang:1.20
+
+WORKDIR /go/src/app
+
+COPY go.* ./
+
+# Install required package
+RUN go get github.com/gorilla/mux
+RUN go get -u github.com/go-sql-driver/mysql
+RUN go get github.com/Shopify/sarama
+
+COPY cmd cmd
+
+RUN go build cmd/main.go
+
+CMD ["./main"]
+
+
+Stéphane 11:22 AM
+http://127.0.0.1:64502/etudiants
+$params = @{"Nom" = "Francois"} | ConvertTo-Json
+Invoke-RestMethod -Method 'Post' -Uri "http://127.0.0.1:64502/etudiants" -Body $params
+
+
+Stéphane 11:28 AM
+require (
+	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/eapache/go-resiliency v1.3.0 // indirect
+	github.com/eapache/go-xerial-snappy v0.0.0-20230111030713-bf00bc1b83b6 // indirect
+	github.com/eapache/queue v1.1.0 // indirect
+	github.com/golang/snappy v0.0.4 // indirect
+	github.com/hashicorp/errwrap v1.0.0 // indirect
+	github.com/hashicorp/go-multierror v1.1.1 // indirect
+	github.com/hashicorp/go-uuid v1.0.3 // indirect
+	github.com/jcmturner/aescts/v2 v2.0.0 // indirect
+	github.com/jcmturner/dnsutils/v2 v2.0.0 // indirect
+	github.com/jcmturner/gofork v1.7.6 // indirect
+	github.com/jcmturner/gokrb5/v8 v8.4.3 // indirect
+	github.com/jcmturner/rpc/v2 v2.0.3 // indirect
+	github.com/klauspost/compress v1.15.14 // indirect
+	github.com/pierrec/lz4/v4 v4.1.17 // indirect
+	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475 // indirect
+	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa // indirect
+	golang.org/x/net v0.5.0 // indirect
+)
+
+
+Bastien Goulet 11:31 AM
+curl -X POST http://172.17.0.2:32525/etudiants -H "Content-Type: application/json" -d '{"Nom": "Olivier"}'
+
+
+Gabriel Létourneau 11:36 AM
+https://portail.uqar.ca/mod/forum/discuss.php?d=251583#p431564
+lien vers le code !
