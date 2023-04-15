@@ -1,0 +1,12 @@
+# Syncroniser mon environement minikube sur mon docker local.
+
+Terminal minikube :: minikube start 
+            	:: minikube dashboard    
+
+
+Terminal dashboard :: minikube docker-env 
+ 			 :: & minikube -p minikube docker-env --shell powershell | Invoke-Expression 
+			 :: # & minikube -p minikube docker-env --shell powershell | Invoke-Expression
+
+
+# Générer le générateur de flux avec le système de queue.
