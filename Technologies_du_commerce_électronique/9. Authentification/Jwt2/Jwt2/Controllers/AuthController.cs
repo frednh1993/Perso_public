@@ -1,4 +1,4 @@
-﻿//using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -14,14 +14,27 @@ namespace Jwt2.Controllers
     {
         public static User user = new User();
         private readonly IConfiguration _configuration;
-        //private readonly IUserService _userService;
+        private readonly IUserService _userService;
 
 
-        public AuthController(IConfiguration configuration)
+        public AuthController(IConfiguration configuration, IUserService userService)
         {
             _configuration = configuration;
+            _userService = userService;
         }
 
+        [HttpGet, Authorize]
+        public ActionResult<string> GetMe()
+        //public ActionResult<object> GetMe()
+        {
+            var userName = _userService.GetMyName();
+            return Ok(userName);
+            
+            //var userName = User?.Identity?.Name;
+            //var userName2 = User.FindFirstValue(ClaimTypes.Name);
+            //var role = User.FindFirstValue(ClaimTypes.Role);
+            //return Ok(new {userName, userName2, role});
+        }
 
         [HttpPost("register")]
         public async Task<ActionResult<User>> Register(UserDto request)
@@ -50,6 +63,7 @@ namespace Jwt2.Controllers
             }
             string token = CreateToken(user);
 
+            // ** Partie 4. **
             //var refreshToken = GenerateRefreshToken();
             //SetRefreshToken(refreshToken);
 
@@ -57,6 +71,7 @@ namespace Jwt2.Controllers
         }
 
 
+        // ** Partie 4. **
         //[HttpPost("refresh-token")]
         //public async Task<ActionResult<string>> RefreshToken()
         //{
@@ -79,6 +94,7 @@ namespace Jwt2.Controllers
         //}
 
 
+        // ** Partie 4. **
         //private RefreshToken GenerateRefreshToken()
         //{
         //    var refreshToken = new RefreshToken
@@ -92,6 +108,7 @@ namespace Jwt2.Controllers
         //}
 
 
+        // ** Partie 4. **
         //private void SetRefreshToken(RefreshToken newRefreshToken)
         //{
         //    var cookieOptions = new CookieOptions

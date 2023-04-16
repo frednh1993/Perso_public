@@ -1,4 +1,4 @@
-//global using Jwt2.Services.UserService;
+global using Jwt2.Services.UserService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -9,8 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddScoped<IUserService, UserService>();
-//builder.Services.AddHttpContextAccessor();
+
+// ** Add the SERVICE and the HttpContextAccessor(acces of the request). **
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddHttpContextAccessor();
 
 // ** What create the option for the AUTHENTICATION. **
 builder.Services.AddSwaggerGen(options =>
@@ -54,7 +56,7 @@ if (app.Environment.IsDevelopment())
 
 //app.UseCors("NgOrigins");
 
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
 app.UseAuthentication();
 
