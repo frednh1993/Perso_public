@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -14,10 +14,26 @@ namespace Jwt2.Controllers
     {
         public static User user = new User();
         private readonly IConfiguration _configuration;
+        private readonly IUserService _userService;
 
-        public AuthController(IConfiguration configuration)
+
+        public AuthController(IConfiguration configuration, IUserService userService)
         {
             _configuration = configuration;
+            _userService = userService;
+        }
+
+        [HttpGet, Authorize]
+        public ActionResult<string> GetMe()
+        //public ActionResult<object> GetMe()
+        {
+            var userName = _userService.GetMyName();
+            return Ok(userName);
+            
+            //var userName = User?.Identity?.Name;
+            //var userName2 = User.FindFirstValue(ClaimTypes.Name);
+            //var role = User.FindFirstValue(ClaimTypes.Role);
+            //return Ok(new {userName, userName2, role});
         }
 
         [HttpPost("register")]
@@ -32,6 +48,7 @@ namespace Jwt2.Controllers
             return Ok(user);
         }
 
+
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login(UserDto request)
         {
@@ -45,14 +62,74 @@ namespace Jwt2.Controllers
                 return BadRequest("Wrong password.");
             }
             string token = CreateToken(user);
+
+            // ** Partie 4. **
+            //var refreshToken = GenerateRefreshToken();
+            //SetRefreshToken(refreshToken);
+
             return Ok(token);
         }
+
+
+        // ** Partie 4. **
+        //[HttpPost("refresh-token")]
+        //public async Task<ActionResult<string>> RefreshToken()
+        //{
+        //    var refreshToken = Request.Cookies["refreshToken"];
+
+        //    if (!user.RefreshToken.Equals(refreshToken))
+        //    {
+        //        return Unauthorized("Invalid Refresh Token.");
+        //    }
+        //    else if (user.TokenExpires < DateTime.Now)
+        //    {
+        //        return Unauthorized("Token expired.");
+        //    }
+
+        //    string token = CreateToken(user);
+        //    var newRefreshToken = GenerateRefreshToken();
+        //    SetRefreshToken(newRefreshToken);
+
+        //    return Ok(token);
+        //}
+
+
+        // ** Partie 4. **
+        //private RefreshToken GenerateRefreshToken()
+        //{
+        //    var refreshToken = new RefreshToken
+        //    {
+        //        Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
+        //        Expires = DateTime.Now.AddDays(7),
+        //        Created = DateTime.Now
+        //    };
+
+        //    return refreshToken;
+        //}
+
+
+        // ** Partie 4. **
+        //private void SetRefreshToken(RefreshToken newRefreshToken)
+        //{
+        //    var cookieOptions = new CookieOptions
+        //    {
+        //        HttpOnly = true,
+        //        Expires = newRefreshToken.Expires
+        //    };
+        //    Response.Cookies.Append("refreshToken", newRefreshToken.Token, cookieOptions);
+
+        //    user.RefreshToken = newRefreshToken.Token;
+        //    user.TokenCreated = newRefreshToken.Created;
+        //    user.TokenExpires = newRefreshToken.Expires;
+        //}
+
 
         private string CreateToken(User user)
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.Username)
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Role, "Admin")
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));  
@@ -69,6 +146,7 @@ namespace Jwt2.Controllers
             return jwt;
         }
 
+
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt) 
         { 
             using(var hmac = new HMACSHA512())
@@ -79,6 +157,7 @@ namespace Jwt2.Controllers
             }
         }
 
+
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
             using (var hmac = new HMACSHA512(passwordSalt))
@@ -86,8 +165,6 @@ namespace Jwt2.Controllers
                 var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
                 return computedHash.SequenceEqual(passwordHash);
             }
-
-
         }
     }
 }

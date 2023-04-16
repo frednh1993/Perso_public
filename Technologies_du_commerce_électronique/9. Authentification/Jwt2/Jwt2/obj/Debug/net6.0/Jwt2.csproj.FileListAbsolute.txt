@@ -1,3 +1,47 @@
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\appsettings.json
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\Jwt2.exe
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\Jwt2.deps.json
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\Jwt2.runtimeconfig.json
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\Jwt2.dll
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\Jwt2.pdb
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\obj\Debug\net6.0\Jwt2.csproj.AssemblyReference.cache
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\obj\Debug\net6.0\Jwt2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\obj\Debug\net6.0\Jwt2.AssemblyInfoInputs.cache
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\obj\Debug\net6.0\Jwt2.AssemblyInfo.cs
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\obj\Debug\net6.0\Jwt2.csproj.CoreCompileInputs.cache
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\obj\Debug\net6.0\Jwt2.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\obj\Debug\net6.0\Jwt2.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\obj\Debug\net6.0\staticwebassets\msbuild.Jwt2.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\obj\Debug\net6.0\staticwebassets\msbuild.build.Jwt2.props
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Jwt2.props
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Jwt2.props
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\obj\Debug\net6.0\scopedcss\bundle\Jwt2.styles.css
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\obj\Debug\net6.0\Jwt2.csproj.CopyComplete
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\obj\Debug\net6.0\Jwt2.dll
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\obj\Debug\net6.0\refint\Jwt2.dll
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\obj\Debug\net6.0\Jwt2.pdb
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\obj\Debug\net6.0\Jwt2.genruntimeconfig.cache
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\obj\Debug\net6.0\ref\Jwt2.dll
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\Scrutor.dll
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.dll
+C:\Users\Boutin\source\repos\UQAR\Perso\Technologies_du_commerce_électronique\9. Authentification\Jwt2\Jwt2\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
 C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\appsettings.json
 C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Jwt2.exe
@@ -5,10 +49,22 @@ C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Jwt2.deps.json
 C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Jwt2.runtimeconfig.json
 C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Jwt2.dll
 C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Jwt2.pdb
+C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Scrutor.dll
+C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.dll
+C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
 C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\obj\Debug\net6.0\Jwt2.csproj.AssemblyReference.cache
 C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\obj\Debug\net6.0\Jwt2.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\obj\Debug\net6.0\Jwt2.AssemblyInfoInputs.cache
@@ -30,8 +86,3 @@ C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\obj\Debug\net6.0\refint\Jwt2.dll
 C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\obj\Debug\net6.0\Jwt2.pdb
 C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\obj\Debug\net6.0\Jwt2.genruntimeconfig.cache
 C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\obj\Debug\net6.0\ref\Jwt2.dll
-C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
-C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
-C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
-C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
-C:\Users\Boutin\Videos\Bureau\Jwt2\Jwt2\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
