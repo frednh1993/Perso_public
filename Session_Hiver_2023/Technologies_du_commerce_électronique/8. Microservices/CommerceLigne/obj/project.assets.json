@@ -6526,11 +6526,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Boutin\\Videos\\Bureau\\CommerceLigne\\CommerceLigne.csproj",
+      "projectUniqueName": "C:\\Users\\Boutin\\source\\repos\\UQAR\\Perso\\Technologies_du_commerce_électronique\\8. Microservices\\CommerceLigne\\CommerceLigne.csproj",
       "projectName": "CommerceLigne",
-      "projectPath": "C:\\Users\\Boutin\\Videos\\Bureau\\CommerceLigne\\CommerceLigne.csproj",
+      "projectPath": "C:\\Users\\Boutin\\source\\repos\\UQAR\\Perso\\Technologies_du_commerce_électronique\\8. Microservices\\CommerceLigne\\CommerceLigne.csproj",
       "packagesPath": "C:\\Users\\Boutin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Boutin\\Videos\\Bureau\\CommerceLigne\\obj\\",
+      "outputPath": "C:\\Users\\Boutin\\source\\repos\\UQAR\\Perso\\Technologies_du_commerce_électronique\\8. Microservices\\CommerceLigne\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

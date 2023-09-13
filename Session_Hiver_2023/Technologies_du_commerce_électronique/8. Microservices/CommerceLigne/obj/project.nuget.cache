@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iaecNdiAnHzwH1bjmE6AqqhZTr5gJj1CFPuVK+8DRwtbcKA7sWf5JKbPYGq51FlKmvEKR673yy1mjnS5yJpb7Q==",
+  "dgSpecHash": "BJn/ox4npaLYcHoCNtMjZnC8cMEea2XExJ+yHaYa/1XPZd1SNTQA5Y2ZPUlDAKTx5fuSuZcBPnz2o/aeyP5jSA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Boutin\\Videos\\Bureau\\CommerceLigne\\CommerceLigne.csproj",
+  "projectFilePath": "C:\\Users\\Boutin\\source\\repos\\UQAR\\Perso\\Technologies_du_commerce_électronique\\8. Microservices\\CommerceLigne\\CommerceLigne.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Boutin\\.nuget\\packages\\fluentvalidation\\10.3.6\\fluentvalidation.10.3.6.nupkg.sha512",
     "C:\\Users\\Boutin\\.nuget\\packages\\kros.utils\\1.19.0\\kros.utils.1.19.0.nupkg.sha512",
