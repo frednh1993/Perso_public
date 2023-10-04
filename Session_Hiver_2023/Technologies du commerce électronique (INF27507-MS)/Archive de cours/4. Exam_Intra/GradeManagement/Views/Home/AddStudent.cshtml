@@ -1,0 +1,27 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+@model GradeManagement.Models.Student
+
+
+<div class="card">
+
+    <div class="card-header">
+        Ajouter un étudient
+    </div>
+
+    <div class="card-body">
+        <form asp-action="AddStudent">
+            <label asp-for="@Model.FirstName">Prénom de l'étudient : </label>
+            <input type="text" asp-for="@Model.FirstName" />
+            <br>
+            <br>
+            <label asp-for="@Model.LastName">Nom de l'étudient : </label>
+            <input type="text" asp-for="@Model.LastName" />
+            <br>
+            <br>
+            <Button class="btn btn-outline-success" type="submit">Ajouter</Button>
+        </form>
+    </div>
+</div>

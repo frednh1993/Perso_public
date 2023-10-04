@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\stripe-api-fruit-manager-app.props" />
-</Project>

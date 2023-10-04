@@ -1,0 +1,43 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<DemoAspNet.Models.Product>
+@{
+    Layout = "_Layout";
+    ViewBag.Title = ViewBag.Title;
+}
+
+
+
+<h1 class="pb-3">Page des produits</h1>
+
+<div class="row">
+    @foreach (DemoAspNet.Models.Product product in Model)
+    {
+        <div class="col-4 mt-3">
+            <partial name="_Card" model="product" />
+        </div>
+    }
+</div>
+
+
+<script type="text/javascript">
+
+        function StripeCheckout(_stripeId) {
+
+           // console.log(_stripeId);
+
+            var data = {
+            StripeId: _stripeId,
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '/create-checkout-session',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(data)
+                success: function () {
+                    location.reload();
+                }
+            })
+        }
+
+</script>

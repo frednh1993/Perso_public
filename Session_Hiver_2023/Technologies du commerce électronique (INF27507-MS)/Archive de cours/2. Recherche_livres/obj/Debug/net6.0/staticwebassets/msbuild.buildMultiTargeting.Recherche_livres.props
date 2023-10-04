@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Recherche_livres.props" />
+</Project>
