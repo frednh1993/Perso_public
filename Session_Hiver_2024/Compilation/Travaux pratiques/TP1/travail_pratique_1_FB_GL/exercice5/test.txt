@@ -1,0 +1,12 @@
+Bonjour a tous je m'appele          gabriel.
+  
+a
+
+//test
+patate /* ceci
+est un 
+
+
+test */ 123
+/* test */
+/*a*/
