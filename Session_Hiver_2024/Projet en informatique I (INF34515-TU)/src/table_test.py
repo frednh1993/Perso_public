@@ -8,18 +8,24 @@ import numpy as np
 from tqdm.auto import tqdm
 import easyocr
 from io import BytesIO
+import math
 
 
 
 
-feature_extractor = DetrFeatureExtractor()
-model = TableTransformerForObjectDetection.from_pretrained("microsoft/table-transformer-structure-recognition")
+# feature_extractor_table = DetrFeatureExtractor()
+# model_table = TableTransformerForObjectDetection.from_pretrained("microsoft/table-transformer-detection")
+# print(model_table.config.id2label)
+
+feature_extractor_structure = DetrFeatureExtractor()
+model_structure = TableTransformerForObjectDetection.from_pretrained("microsoft/table-transformer-structure-recognition")
+print(model_structure.config.id2label)
 
 # colors for visualization
 COLORS = [[0.000, 0.447, 0.741], [0.850, 0.325, 0.098], [0.929, 0.694, 0.125],
           [0.494, 0.184, 0.556], [0.466, 0.674, 0.188], [0.301, 0.745, 0.933]]
 
- # - 11 - Apply OCR row by row
+# - 11 - Apply OCR row by row
 def apply_ocr(cell_coordinates):
     # let's OCR row by row
     data = dict()
@@ -52,9 +58,89 @@ def apply_ocr(cell_coordinates):
 
     return data
 
-def isolate_table_cells(columns : list, rows : list):
-    pass
+def check_equivalance_of_data(data1, data2, adjustment_factor=0):
+    data1_floor = math.floor(data1)
+    data1_ceil = math.ceil(data1)
+    data2_floor = math.floor(data2)
+    data2_ceil = math.ceil(data2)
+    
+    if(data1_floor == data2_floor or data1_floor == data2_ceil):
+        return True
+    if(data1_ceil == data2_floor or data1_ceil == data2_ceil):
+        return True
+    
+    if(data1_floor - adjustment_factor == data2_floor or data1_floor - adjustment_factor == data2_ceil):
+        return True
+    if(data1_floor + adjustment_factor == data2_floor or data1_floor + adjustment_factor == data2_ceil):
+        return True
+    
+    if(data1_ceil - adjustment_factor == data2_floor or data1_ceil - adjustment_factor == data2_ceil):
+        return True
+    if(data1_ceil + adjustment_factor == data2_floor or data1_ceil + adjustment_factor == data2_ceil):
+        return True
+    
+    return False
 
+def extract_values_from_cells_table(image : Image, sorted_cells_matrix) :
+    reader = easyocr.Reader(['en'])
+    dimensions = sorted_cells_matrix.shape
+    num_rows, num_cols = dimensions
+    values_matrix = np.zeros((num_rows, num_cols), dtype=object)
+    PERCENTAGE_ADJUSTMENT_MARGIN = 5/100
+    
+    for row_idx in range(sorted_cells_matrix.shape[0]):
+        for col_idx in range(sorted_cells_matrix.shape[1]):
+            element = sorted_cells_matrix[row_idx, col_idx]
+            if (element != 0):
+                png_buffer = BytesIO()
+                adjusted_element = (element[0], element[1], element[2], element[3])
+                cell_image = image.crop(adjusted_element)
+                resized_cell_image = cell_image.resize((cell_image.width * 2, cell_image.height * 2))
+                resized_cell_image.show()
+                resized_cell_image.save(png_buffer, format="PNG")
+                png_buffer_bytes = png_buffer.getvalue()
+                cell_value = reader.readtext(png_buffer_bytes)
+                # TODO : Allow to continue even for the case where there is no value found.
+                if cell_value != []:
+                    data = cell_value[0][1]
+                else:
+                    data = ""
+                values_matrix[row_idx, col_idx] = data
+                
+    return values_matrix
+
+def isolate_table_cells(columns : list, rows : list):
+    # Hypothesis that inputs are sorted from left to right and top to bottom.
+    cols_nbr = len(columns)
+    row_nbr = len(rows)
+    cells_matrix = np.zeros((row_nbr, cols_nbr), dtype=object)
+    
+    for col_idx, column in enumerate(columns) :
+        for row_idx, row in enumerate(rows) :
+            if ( (column[0] >= row[0] or check_equivalance_of_data(column[0], row[0])) and (column[2] <= row[2] or check_equivalance_of_data(column[2], row[2])) ) :
+                cell_coordinates = (column[0], row[1], column[2], row[3])
+                cells_matrix[row_idx, col_idx] = cell_coordinates
+                
+    return cells_matrix
+
+def determine_table_perimeter(results_table):
+    
+    test = results_table['boxes']
+    # test_1 = (0.13 * test[0][0])
+    # test_2 = (0.10 * test[0][1])
+    # test_3 = (0.03 * test[0][2])
+    # test_4 = (0.02 * test[0][3])
+    
+    test[0][0] = test[0][0] - (0.13 * test[0][0])
+    test[0][1] = test[0][1] - (0.10 * test[0][1])
+    test[0][2] = test[0][2] + (0.03 * test[0][2])
+    test[0][3] = test[0][3] + (0.02 * test[0][3])
+    
+    # tensor_2 = torch.tensor([[test_1, test_2, test_3, test_4]])
+    # results_table['boxes'] = results_table['boxes'] - tensor_2
+                
+    return True
+                
 def isolate_table_rows_and_columns(cells : list, labels : list):
     
     columns_tensors = []
@@ -68,13 +154,14 @@ def isolate_table_rows_and_columns(cells : list, labels : list):
             case 2:
                 rows_tensors.append(cells[index])
             case 3:
-                columns_tensors.append(cells[index])
+                # columns_tensors.append(cells[index])
+                pass
             case _:
                 pass
             
     return columns_tensors, rows_tensors
 
-def plot_results(pil_img, scores, labels, boxes):
+def plot_results(model, config_number_to_show, pil_img, scores, labels, boxes):
     # To create a new figure object (width, height).
     plt.figure(figsize=(16,10))
     
@@ -86,7 +173,7 @@ def plot_results(pil_img, scores, labels, boxes):
     colors = COLORS * 100
     
     for score, label, (xmin, ymin, xmax, ymax),c  in zip(scores.tolist(), labels.tolist(), boxes.tolist(), colors):
-      if label != 2:
+      if label != config_number_to_show:
         continue
       
       ax.add_patch(plt.Rectangle((xmin, ymin), xmax - xmin, ymax - ymin,
@@ -118,70 +205,67 @@ def plot_results_2(pil_img, boxes):
 
 
 
-image = Image.open("table2.png").convert("RGB")
-# image.show()
+# image_raw = Image.open("raw_1.png").convert("RGB")
+# # image.show()
 
-encoding = feature_extractor(image, return_tensors="pt")
-# print(encoding.data["pixel_values"])
+# encoding_table = feature_extractor_table(image_raw, return_tensors="pt")
+# # print(feature_extractor_table.data["pixel_values"])
+
+# with torch.no_grad():
+#   outputs_table = model_table(**encoding_table)
+# # print(outputs_table.logits)
+# # outputs_table.logits.shape 
+
+# width_raw, height_raw = image_raw.size
+# results_table = feature_extractor_table.post_process_object_detection(outputs_table, threshold=0.7, target_sizes=[(height_raw, width_raw)])[0]
+# # plot_results(model_table, 0, image_raw, results_table['scores'], results_table['labels'], results_table['boxes'])
+# determine_table_perimeter(results_table)
+# # plot_results(model_table, 0, image_raw, results_table['scores'], results_table['labels'], results_table['boxes'])
+# test = results_table['boxes'].tolist()
+# adjusted_element = (test[0][0], test[0][1], test[0][2], test[0][3])
+# # adjusted_element2 = adjusted_element.tolist()
+# table_image = image_raw.crop(adjusted_element)
+# # table_image_png_buffer = BytesIO()
+# # table_image.save(table_image_png_buffer, format="PNG")
+# # table_image_png_buffer_bytes = table_image_png_buffer.getvalue()
+
+# table_image.save("table_1.png")
+# print("The End for table perimeter detection !")
+
+
+# // ---- Structure section ---- //
+
+structure_image = Image.open("table3.png").convert("RGB")
+structure_image = structure_image.resize((structure_image.width * 3, structure_image.height * 3))
+structure_image.show()
+
+encoding_structure = feature_extractor_structure(structure_image, return_tensors="pt")
+# print(feature_extractor_structure.data["pixel_values"])
 
 with torch.no_grad():
-  outputs = model(**encoding)
-# print(outputs.logits)
-# outputs.logits.shape 
+  outputs_structure = model_structure(**encoding_structure)
 
-target_sizes = [image.size[::-1]]
-results = feature_extractor.post_process_object_detection(outputs, threshold=0.6, target_sizes=target_sizes)[0]
+target_sizes = [structure_image.size[::-1]]
+# TODO : The image NEED to have more PADDING on his left side ! 
+results_structure = feature_extractor_structure.post_process_object_detection(outputs_structure, threshold=0.3, target_sizes=target_sizes)[0]
 
-cells_array = results['boxes'].tolist()
-labels_array = results['labels'].tolist()
-sorted_columns_array, sorted_rows_array  = isolate_table_rows_and_columns(cells_array, labels_array)
-sorted_cells_2d_list : list[][] = isolate_table_cells(sorted_columns_array, sorted_rows_array)
+plot_results(model_structure, 2, structure_image, results_structure['scores'], results_structure['labels'], results_structure['boxes'])
 
-# numpy_array = rows.numpy()
-reader = easyocr.Reader(['en'])
-# print(model.config.label2id)
-# for tensor in numpy_array :
-#   x1 = tensor[0]
-#   y1 = tensor[1]
-#   x2 = tensor[2]
-#   y2 = tensor[3]
+cells_array = results_structure['boxes'].tolist()
+labels_array = results_structure['labels'].tolist()
+unsorted_columns_array, unsorted_rows_array  = isolate_table_rows_and_columns(cells_array, labels_array)
 
-# numpy_array_r = row0.numpy()
-# numpy_array_c = col0.numpy()
-# test = numpy_array_r.tolist()
-# sorted_cells_array = isolate_table_cells(cells_array, results_array)
+# Sort columns in function of x0 or xmin coordinate.
+sorted_columns_array = sorted(unsorted_columns_array, key=lambda c: c[0])
+# Sort rows in function of y0 or ymin coordinate.
+sorted_rows_array = sorted(unsorted_rows_array, key=lambda c: c[1])
 
-# cropped_img_r = image.crop(test)
-# cropped_img_r.show()
-# png_buffer = BytesIO()
-# cropped_img_r.save(png_buffer, format="PNG")
+sorted_cells_matrix = isolate_table_cells(sorted_columns_array, sorted_rows_array)
+sorted_values_matrix = extract_values_from_cells_table(structure_image, sorted_cells_matrix)
 
-# result1 = reader.readtext(numpy_array_r)
+for row_idx in range(sorted_values_matrix.shape[0]):
+    print()
+    for col_idx in range(sorted_values_matrix.shape[1]):
+        print(f" {sorted_values_matrix[row_idx, col_idx]} ", end="")
 
-# cropped_img_c = image.crop(numpy_array_r.tolist()[0], numpy_array_c[1], numpy_array_c[2], numpy_array_c[3])
-# Image_test = Image.open(png_buffer)
-# cropped_img_r.save("table_row.png")
-# filepath = "C:\\Users\\rmfbo\\source\\repos\\UQAR\\Perso\\Session_Hiver_2024\\Projet en informatique I (INF34515-TU)\\table_row.png"
-# totfilepath = "C:\\Users\\rmfbo\\source\\repos\\UQAR\\Perso\\Session_Hiver_2024\\Projet en informatique I (INF34515-TU)\\table2.png"
-png_data = png_buffer.getvalue()
-result1 = reader.readtext(png_data)
-# result2 = reader.readtext(totfilepath)
-# cropped_img_r.show()
-isolate_table_cells(cells_array)
-plot_results(image, results['scores'], results['labels'], results['boxes'])
-# print(model.config.label2id)
-
-# - 11 - Apply OCR row by row
-# cell_coordinates = get_cell_coordinates_by_row(cells)
-# len(cell_coordinates)
-# len(cell_coordinates[0]["cells"])
-# for row in cell_coordinates:
-#     print(row["cells"])
-# reader = easyocr.Reader(['en']) # this needs to run only once to load the model into memory
-# data = apply_ocr(cell_coordinates)
-# for row, row_data in data.items():
-#     print(row_data)
-
-# tensor_np = np.array([[15.6750, 507.0435, 498.6588, 526.7598]])
-# plot_results_2(image, tensor_np)
-# print("End")
+print("The End for table structure data detection !")
