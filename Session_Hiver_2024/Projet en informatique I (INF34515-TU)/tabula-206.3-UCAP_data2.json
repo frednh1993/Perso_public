@@ -1,0 +1,28 @@
+[
+    {
+        "page": 2,
+        "extraction_method": "stream",
+        "selection_id": "O1713297735630",
+        "name": "table_1",
+        "x1": 83.0025,
+        "x2": 546.5925,
+        "y1": 326.2725,
+        "y2": 424.1925,
+        "width": 463.59000000000003,
+        "height": 97.92,
+        "spec_index": 0
+    },
+    {
+        "page": 2,
+        "extraction_method": "stream",
+        "selection_id": "D1713297750559",
+        "name": "table_2",
+        "x1": 88.3575,
+        "x2": 558.8325,
+        "y1": 623.8575,
+        "y2": 731.7225,
+        "width": 470.475,
+        "height": 107.865,
+        "spec_index": 1
+    }
+]
