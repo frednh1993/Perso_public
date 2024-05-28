@@ -1,8 +1,0 @@
-# Base image
-FROM nginx:latest
-
-# Copy custom configuration file
-COPY conf.d/ /etc/nginx/conf.d/
-
-
-

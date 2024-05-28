@@ -1,3 +1,0 @@
-https://www.rfc-editor.org/rfc-index.html
-
-La série RFC contient des documents techniques et organisationnels sur Internet, y compris les spécifications et les documents de politique produits par cinq courants : l'Internet Engineering Task Force (IETF), l'Internet Research Task Force (IRTF), l'Internet Architecture Board (IAB), l'Independent Soumissions et éditorial.
