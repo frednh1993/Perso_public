@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Movies Page
+{% endblock %}
+
+{% block body %}
+
+    {# {% for movie in movies %}
+
+        <li>{{ movie }}</li>
+        
+    {% endfor %} #}
+
+    <h1>
+        {{ _self }}
+    </h1>
+
+    <h1>
+        {{ _charset }}
+    </h1>
+
+    {# See the file config > packages > twig.yaml for the global variable defenition ! #}
+    <h1>
+        {{ author }}
+    </h1>
+    
+{% endblock %}
