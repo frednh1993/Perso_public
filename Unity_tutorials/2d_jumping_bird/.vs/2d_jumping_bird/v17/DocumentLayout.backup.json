@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Users\\rmfbo\\source\\repos\\Perso_public\\Unity_tutorials\\2d_jumping_bird\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E5972B3B-3B1E-2C9E-8BC1-621A11CFEC6D}|Assembly-CSharp.csproj|d:\\users\\rmfbo\\source\\repos\\perso_public\\unity_tutorials\\2d_jumping_bird\\assets\\pipemovescript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E5972B3B-3B1E-2C9E-8BC1-621A11CFEC6D}|Assembly-CSharp.csproj|solutionrelative:assets\\pipemovescript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E5972B3B-3B1E-2C9E-8BC1-621A11CFEC6D}|Assembly-CSharp.csproj|d:\\users\\rmfbo\\source\\repos\\perso_public\\unity_tutorials\\2d_jumping_bird\\assets\\pipespawnscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E5972B3B-3B1E-2C9E-8BC1-621A11CFEC6D}|Assembly-CSharp.csproj|solutionrelative:assets\\pipespawnscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E5972B3B-3B1E-2C9E-8BC1-621A11CFEC6D}|Assembly-CSharp.csproj|D:\\Users\\rmfbo\\source\\repos\\Perso_public\\Unity_tutorials\\2d_jumping_bird\\assets\\birdscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E5972B3B-3B1E-2C9E-8BC1-621A11CFEC6D}|Assembly-CSharp.csproj|solutionrelative:assets\\birdscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PipeMoveScript.cs",
+              "DocumentMoniker": "D:\\Users\\rmfbo\\source\\repos\\Perso_public\\Unity_tutorials\\2d_jumping_bird\\Assets\\PipeMoveScript.cs",
+              "RelativeDocumentMoniker": "Assets\\PipeMoveScript.cs",
+              "ToolTip": "D:\\Users\\rmfbo\\source\\repos\\Perso_public\\Unity_tutorials\\2d_jumping_bird\\Assets\\PipeMoveScript.cs",
+              "RelativeToolTip": "Assets\\PipeMoveScript.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T20:30:35.443Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PipeSpawnScript.cs",
+              "DocumentMoniker": "D:\\Users\\rmfbo\\source\\repos\\Perso_public\\Unity_tutorials\\2d_jumping_bird\\Assets\\PipeSpawnScript.cs",
+              "RelativeDocumentMoniker": "Assets\\PipeSpawnScript.cs",
+              "ToolTip": "D:\\Users\\rmfbo\\source\\repos\\Perso_public\\Unity_tutorials\\2d_jumping_bird\\Assets\\PipeSpawnScript.cs",
+              "RelativeToolTip": "Assets\\PipeSpawnScript.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwCgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T19:59:25.142Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BirdScript.cs",
+              "DocumentMoniker": "D:\\Users\\rmfbo\\source\\repos\\Perso_public\\Unity_tutorials\\2d_jumping_bird\\Assets\\BirdScript.cs",
+              "RelativeDocumentMoniker": "Assets\\BirdScript.cs",
+              "ToolTip": "D:\\Users\\rmfbo\\source\\repos\\Perso_public\\Unity_tutorials\\2d_jumping_bird\\Assets\\BirdScript.cs",
+              "RelativeToolTip": "Assets\\BirdScript.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T18:52:40.189Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
