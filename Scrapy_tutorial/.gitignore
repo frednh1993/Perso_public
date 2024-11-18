@@ -1,0 +1,63 @@
+# Byte-compiled / optimized / DLL files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.swp
+*.swo
+
+# Scrapyd deployment files
+.eggs/
+.eggs-info/
+*.egg
+*.egg-info
+*.manifest
+*.spec
+
+# Logs and debug files
+*.log
+*.out
+*.err
+*.bak
+
+# Caches and temporary files
+.cache/
+*.sqlite
+*.db
+.DS_Store
+*.tmp
+*.temp
+*.~*
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+scrapy-env/
+
+# System files
+*.DS_Store
+Thumbs.db
+*.idea
+.vscode/
+
+# Spider-specific outputs
+output/
+*.json
+*.jl
+*.csv
+*.xml
+
+# Build directories
+build/
+dist/
+
+# Scrapy auto-generated files
+scrapy.cfg
+
+# Pip requirements
+pip-log.txt
+
+# User secrets or credentials
+.env
